@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: btc-termin-l
+    runtime: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: bash scripts/render-start.sh
+    envVars:
+      - key: NODE_VERSION
+        value: 24
+      - key: DATABASE_URL
+        value: file:/var/data/pos.db
+      - key: NEXT_PUBLIC_BASE_URL
+        sync: false
+      - key: LNBITS_URL
+        sync: false
+      - key: LNBITS_API_KEY
+        sync: false
+      - key: TERMINAL_IDS
+        value: terminal-1,terminal-2
+      - key: TERMINAL_LABELS
+        value: Hlavni pokladna,Bar
+      - key: RATE_CACHE_TTL_SECONDS
+        value: 60
+    disk:
+      name: sqlite-data
+      mountPath: /var/data
+      sizeGB: 1
