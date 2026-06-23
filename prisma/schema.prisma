@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Terminal {
+  id        String    @id
+  label     String
+  createdAt DateTime  @default(now())
+  sessions  Session[]
+}
+
+model Session {
+  id             String        @id @default(cuid())
+  terminalId     String
+  terminal       Terminal      @relation(fields: [terminalId], references: [id])
+  amountCZK      Float
+  amountSats     Int
+  btcRateAtTime  Float
+  paymentRequest String
+  paymentHash    String        @unique
+  status         String        @default("PENDING")
+  createdAt      DateTime      @default(now())
+  expiresAt      DateTime
+  paidAt         DateTime?
+
+  @@index([terminalId, status])
+}
