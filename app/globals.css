@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-accent: #F7931A;
+  --color-confirmed: #22C55E;
+  --color-error: #EF4444;
+  --color-bg: #0A0A0A;
+  --color-surface: #141414;
+  --color-border: #2A2A2A;
+  --color-text: #F5F5F5;
+  --color-muted: #6B6B6B;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-display);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  touch-action: manipulation;
+}
